@@ -30,5 +30,30 @@ $layouts[ $layout_name ] = array(
 			'preview_size'  => 'medium',
 			'library'       => 'all',
 		),
+		array(
+			'key'           => 'field_text_media_image_position',
+			'label'         => __( 'Image position', 'agentic-workflow' ),
+			'name'          => 'image_position',
+			'type'          => 'select',
+			'choices'       => array(
+				'right' => __( 'Right', 'agentic-workflow' ),
+				'left'  => __( 'Left', 'agentic-workflow' ),
+			),
+			'default_value' => 'right',
+			'return_format' => 'value',
+		),
+		array(
+			'key'           => 'field_text_media_vertical_alignment',
+			'label'         => __( 'Vertical alignment', 'agentic-workflow' ),
+			'name'          => 'vertical_alignment',
+			'type'          => 'select',
+			'choices'       => array(
+				'center' => __( 'Center', 'agentic-workflow' ),
+				'top'    => __( 'Top', 'agentic-workflow' ),
+				'bottom' => __( 'Bottom', 'agentic-workflow' ),
+			),
+			'default_value' => 'center',
+			'return_format' => 'value',
+		),
 	),
 );
