@@ -177,3 +177,31 @@ function agentic_workflow_enqueue_layout_styles(): void {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'agentic_workflow_enqueue_layout_styles', 20 );
+
+/**
+ * Enqueue script.js for layouts used on the current page.
+ */
+function agentic_workflow_enqueue_layout_scripts(): void {
+	if ( is_admin() || ! is_singular( 'page' ) ) {
+		return;
+	}
+
+	$slugs = agentic_workflow_page_layout_slugs( (int) get_queried_object_id() );
+
+	foreach ( $slugs as $slug ) {
+		$path = THEME_DIR . '/layouts/' . $slug . '/script.js';
+
+		if ( ! file_exists( $path ) ) {
+			continue;
+		}
+
+		wp_enqueue_script(
+			'agentic-workflow-layout-' . $slug,
+			THEME_URI . '/layouts/' . $slug . '/script.js',
+			array(),
+			(string) filemtime( $path ),
+			true
+		);
+	}
+}
+add_action( 'wp_enqueue_scripts', 'agentic_workflow_enqueue_layout_scripts', 20 );
