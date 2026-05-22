@@ -1,0 +1,29 @@
+name: Deploy theme to Kinsta
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Sync files via SFTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.KINSTA_HOST }}
+          username: ${{ secrets.KINSTA_USER }}
+          password: ${{ secrets.KINSTA_PASSWORD }}
+          port: ${{ secrets.KINSTA_PORT }}
+          server-dir: ${{ secrets.KINSTA_PATH }}
+          local-dir: ./ # Point this to your theme directory if it's not the root of your repo
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/composer.json
+            **/package.json
