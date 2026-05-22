@@ -1,4 +1,4 @@
-name: Deploy Theme to Kinsta
+name: Deploy theme to Kinsta
 
 on:
   push:
