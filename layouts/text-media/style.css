@@ -1,0 +1,37 @@
+.layout--text-media {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 2rem;
+	align-items: center;
+	padding: 4rem 1.5rem;
+}
+
+.layout--text-media__content h2 {
+	margin: 0 0 1rem;
+}
+
+.layout--text-media__content p {
+	margin: 0;
+	max-width: 40rem;
+}
+
+.layout--text-media__media {
+	justify-self: end;
+	width: 100%;
+}
+
+.layout--text-media__image {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+@media (max-width: 768px) {
+	.layout--text-media {
+		grid-template-columns: 1fr;
+	}
+
+	.layout--text-media__media {
+		justify-self: stretch;
+	}
+}
