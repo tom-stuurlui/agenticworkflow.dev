@@ -1,10 +1,12 @@
 :root {
 	--brand-color: #533AFD;
+	--neutral-grey: #eee;
 }
 
 body {
 	font-family: Inter, system-ui, -apple-system, sans-serif;
 	font-weight: 400;
+	background-color: var(--neutral-grey);
 }
 
 h1,
