@@ -33,16 +33,12 @@ function agentic_workflow_get_layouts(): array {
 }
 
 /**
- * Register the Layouts flexible content field group for pages.
+ * Register local ACF field groups once ACF is ready.
  */
-function agentic_workflow_register_layouts_field_group(): void {
-	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
-		return;
-	}
-
+function agentic_workflow_acf_init(): void {
 	$layouts = agentic_workflow_get_layouts();
 
-	if ( empty( $layouts ) || ! is_array( $layouts ) ) {
+	if ( $layouts === array() ) {
 		return;
 	}
 
@@ -63,7 +59,7 @@ function agentic_workflow_register_layouts_field_group(): void {
 					'name'         => 'layouts',
 					'type'         => 'flexible_content',
 					'layouts'      => $acf_layouts,
-					'button_label' => __( 'Add section', 'agentic-workflow' ),
+					'button_label' => __( 'Add layout', 'agentic-workflow' ),
 				),
 			),
 			'location'              => array(
@@ -85,7 +81,7 @@ function agentic_workflow_register_layouts_field_group(): void {
 		)
 	);
 }
-add_action( 'acf/init', 'agentic_workflow_register_layouts_field_group' );
+add_action( 'acf/init', 'agentic_workflow_acf_init' );
 
 /**
  * Render flexible layout sections for the current (or given) post.
