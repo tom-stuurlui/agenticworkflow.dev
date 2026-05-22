@@ -1,4 +1,4 @@
-name: Deploy theme to Kinsta
+name: Deploy Theme to Kinsta
 
 on:
   push:
@@ -12,19 +12,20 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup SSH Connection
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.KINSTA_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -p ${{ secrets.KINSTA_PORT }} -H ${{ secrets.KINSTA_HOST }} >> ~/.ssh/known_hosts
-
-      - name: Deploy Theme using Native Rsync
-        run: |
-          rsync -avz --delete \
-            -e "ssh -p ${{ secrets.KINSTA_PORT }}" \
-            --exclude='.git*' \
-            --exclude='node_modules/' \
-            --exclude='package.json' \
-            --exclude='package-lock.json' \
-            ./ ${{ secrets.KINSTA_USER }}@${{ secrets.KINSTA_HOST }}:${{ secrets.KINSTA_PATH }}
+      - name: Sync files via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          username: ${{ secrets.KINSTA_USER }}
+          server: ${{ secrets.KINSTA_HOST }}
+          password: ${{ secrets.KINSTA_PASSWORD }}
+          port: ${{ secrets.KINSTA_PORT }} # Ensure this secret is set to 22
+          local_path: './*' # Uploads everything inside your root folder
+          remote_path: ${{ secrets.KINSTA_PATH }}
+          # Exclude files you don't want on your production site
+          exclude_or_include: |
+            .git/
+            .github/
+            node_modules/
+            package.json
+            package-lock.json
+            composer.json
