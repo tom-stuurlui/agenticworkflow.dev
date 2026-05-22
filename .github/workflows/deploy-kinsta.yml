@@ -19,6 +19,7 @@ jobs:
           username: ${{ secrets.KINSTA_USER }}
           password: ${{ secrets.KINSTA_PASSWORD }}
           port: ${{ secrets.KINSTA_PORT }}
+          protocol: sftp
           server-dir: ${{ secrets.KINSTA_PATH }}
           local-dir: ./ # Point this to your theme directory if it's not the root of your repo
           exclude: |
