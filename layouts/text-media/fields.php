@@ -9,6 +9,12 @@ $layouts[ $layout_name ] = array(
 	'display'    => 'block',
 	'sub_fields' => array(
 		array(
+			'key'   => 'field_text_media_pretitle',
+			'label' => __( 'Pretitle', 'agentic-workflow' ),
+			'name'  => 'pretitle',
+			'type'  => 'text',
+		),
+		array(
 			'key'   => 'field_text_media_heading',
 			'label' => __( 'Heading', 'agentic-workflow' ),
 			'name'  => 'heading',
