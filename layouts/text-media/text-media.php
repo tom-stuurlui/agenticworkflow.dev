@@ -25,6 +25,10 @@ $classes = array(
 ?>
 <section class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>">
 	<div class="layout--text-media__content">
+		<?php if ( $pretitle ) : ?>
+			<div class="layout--text-media__pretitle"><?php echo esc_html( $pretitle ); ?></div>
+		<?php endif; ?>
+
 		<?php if ( $heading ) : ?>
 			<h2><?php echo esc_html( $heading ); ?></h2>
 		<?php endif; ?>

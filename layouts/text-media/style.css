@@ -23,6 +23,15 @@
 	align-items: end;
 }
 
+.layout--text-media__pretitle {
+	color: var(--brand-color);
+	font-weight: 700;
+	text-transform: uppercase;
+	margin: 0 0 0.5rem;
+	font-size: 0.875rem;
+	letter-spacing: 0.05em;
+}
+
 .layout--text-media__content h2 {
 	margin: 0 0 1rem;
 }
