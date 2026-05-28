@@ -1,6 +1,7 @@
 <?php
 
 $heading            = get_sub_field( 'heading' );
+$pretitle            = get_sub_field( 'pretitle' );
 $text               = get_sub_field( 'text' );
 $image              = get_sub_field( 'image' );
 $youtube_url        = get_sub_field( 'youtube_url' );
